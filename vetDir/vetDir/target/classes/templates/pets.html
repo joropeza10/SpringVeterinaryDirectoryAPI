@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+
+
+
+
+	<div class="container">
+	
+	<nav id="nav" class="navbar navbar-expand-lg navbar-dark bg-dark">
+	  <a class="navbar-brand" href="/pets">Vet</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+	    <div class="navbar-nav">
+	      <a class="nav-item nav-link" href="/pets">Pets Database</a>
+	      <a class="nav-item nav-link" href="#">Inventory Database</a>
+	    </div>
+	  </div>
+	</nav>
+	
+	<h2 id="header1">PETS REGISTERED IN DATABASE</h2>
+	<a class="btn btn-primary mb-3" th:href="@{/pets/new}">ADD PET</a>
+	<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Breed</th>
+      <th scope="col">Owner First Name</th>
+      <th scope="col">Owner Last Name</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="tempPet: ${pets}">
+      <td th:text="${tempPet.id}"></td>
+      <td th:text="${tempPet.name}"></td>
+      <td th:text="${tempPet.breed}"></td>
+      <td th:text="${tempPet.owner_firstName}"></td>
+      <td th:text="${tempPet.owner_lastName}"></td>
+      <td th:text="${tempPet.phone}"></td>
+      <td><a class="btn btn-primary" th:href="@{/pets/edit(petId=${tempPet.id})}">Edit</a>
+      	  <a class="btn btn-danger" th:href="@{/pets/delete(petId=${tempPet.id})}"
+      	  		onclick="if (!(confirm('Do you want to delete this Pet?'))) return false">Delete</a></td>
+    </tr>
+    
+  </tbody>
+</table>
+
+
+	
+
+
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html> 
